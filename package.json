@@ -3,12 +3,16 @@
   "version": "0.1.1",
   "description": "A vile plugin for brakeman.",
   "main": "lib/index.js",
+  "files": [
+    "bin",
+    "lib",
+    "src"
+  ],
   "scripts": {
-    "postinstall": "babel -d lib -m common src",
+    "compile": "babel -d lib -m common src",
     "dev": "bin/dev",
     "test": "bin/test",
-    "test-cov": "bin/test-cov",
-    "wrap": "npm-shrinkwrap"
+    "test-cov": "bin/test-cov"
   },
   "keywords": [
     "vile",
@@ -16,21 +20,22 @@
     "ruby"
   ],
   "dependencies": {
-    "@brentlintner/vile": "^0.1.7",
-    "babel": "~5.6.14",
-    "bluebird": "~2.9.32",
+    "@brentlintner/vile": "~0.3.6",
+    "bluebird": "~3.0.6",
     "ignore-file": "~1.1.2",
-    "lodash": "~3.9.3"
+    "lodash": "~3.10.1"
   },
   "devDependencies": {
-    "chai": "~3.0.0",
+    "babel": "~5.8.34",
+    "chai": "~3.4.1",
     "chai-as-promised": "~5.1.0",
-    "coffee-script": "~1.9.3",
-    "istanbul": "~0.3.19",
+    "coffee-script": "~1.10.0",
+    "istanbul": "~0.4.1",
     "mimus": "~0.1.2",
-    "mocha": "~2.2.5",
-    "npm-shrinkwrap": "~5.4.0",
-    "sinon": "~1.15.4",
+    "mocha": "~2.3.4",
+    "npm-check-updates": "~2.5.4",
+    "release-it": "~2.3.1",
+    "sinon": "~1.17.2",
     "sinon-chai": "~2.8.0"
   }
 }
