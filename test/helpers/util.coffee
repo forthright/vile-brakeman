@@ -5,24 +5,28 @@ all_files = [
     file: "app/models/some_other_model.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
   {
     file: "app/models/a_model.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
   {
     file: "config/routes.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
   {
     file: "app/controllers/some_controller.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
 ]
@@ -32,12 +36,14 @@ issues = [
     file: "app/models/some_other_model.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
   {
     file: "app/controllers/some_controller.rb",
     msg: "",
     type: "ok",
+    data: {},
     where: { end: {}, start: {} }
   }
   {
@@ -45,6 +51,7 @@ issues = [
     msg: "Potentially dangerous attribute available for " +
          "mass assignment (Mass Assignment) (Confidence: Weak)",
     type: "warn"
+    data: {},
     where: {
       end: { }
       start: { }
@@ -55,6 +62,7 @@ issues = [
     msg: "All public methods in controllers are available " +
          "as actions in routes.rb (Default Routes) (Confidence: High)",
     type: "warn",
+    data: {},
     where: {
       end: { }
       start: { line: 34 }
@@ -65,6 +73,7 @@ issues = [
     msg: "(app/controllers/some_controller.rb:7 " +
          ":: parse error on value \"-\" (tOP_ASGN))",
     type: "error",
+    data: {},
     where: { end: {}, start: {} }
   }
 ]
