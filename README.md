@@ -40,6 +40,8 @@ IPC option is implemented.
 - `bin` houses any shell based scripts
 - `src` is es6+ syntax compiled with [babel](https://babeljs.io)
 - `lib` generated js library
+- `test` any test related code written in coffeescript
+- `.test` generated js test code
 
 ## Hacking
 

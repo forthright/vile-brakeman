@@ -1,6 +1,5 @@
 let _ = require("lodash")
 let vile = require("@brentlintner/vile")
-let ignore = require("ignore-file")
 
 const brakeman_cli = "brakeman"
 const brakeman_base_options = ["-q", "--format", "json", "."]
@@ -8,12 +7,10 @@ const brakeman_type = {
   WARNING: 1,
   ERROR: 2
 }
-
-let is_ruby_file = (file) => !!file.match(/\.rb$/)
-
-let allowed = (ignore_list) => {
-  let ignored = ignore.compile(ignore_list.join("\n"))
-  return (file) => is_ruby_file(file) && !ignored(file)
+const no_br_issues = {
+  warnings: [],
+  errors: [],
+  ignored_warnings: []
 }
 
 let brakeman_cli_args = (custom_config_path) =>
@@ -25,50 +22,57 @@ let brakeman = (custom_config_path) =>
     .spawn(brakeman_cli, {
       args: brakeman_cli_args(custom_config_path)
     })
-    .then((stdout) =>
-      stdout ? JSON.parse(stdout) :
-      { warnings: [], errors: [], ignored_warnings: [] })
+    .then((stdout) => stdout ? JSON.parse(stdout) : no_br_issues)
 
-let vile_issue = (br_issue, type) => {
-  let message = br_issue.message ? `${br_issue.message} ` : ""
-  let warning_type = `(${br_issue.warning_type || br_issue.error}) `
+let where = (br_issue) =>
+  br_issue.line ?
+    { start: { line: br_issue.line } } : {}
+
+let message = (br_issue) => {
   let confidence = br_issue.confidence ?
-    `(Confidence: ${br_issue.confidence})` : ""
-
-  return vile.issue(
-    type == brakeman_type.WARNING ? vile.WARNING : vile.ERROR,
-    br_issue.file || "",
-    _.trim(message + warning_type + confidence),
-    br_issue.line ? { line: br_issue.line } : undefined
-  )
+    ` (Confidence: ${br_issue.confidence})` : ""
+  return _.trim(br_issue.message ?
+    (br_issue.message + confidence)
+      : br_issue.error)
 }
+
+let filepath = (br_issue) => br_issue.file || ""
+
+let link = (br_issue) => br_issue.link
+
+let context = (br_type) =>
+  br_type == brakeman_type.ERROR ?
+    vile.ERR : vile.SEC
+
+let signature = (br_issue) =>
+  "brakeman::" +
+    (br_issue.fingerprint || br_issue.error)
+
+let title = (br_issue, type) =>
+  type == brakeman_type.ERROR ?
+    "Error" : br_issue.warning_type
+
+let vile_issue = (br_issue, type) =>
+  vile.issue({
+    type: context(type),
+    title: title(br_issue, type),
+    signature: signature(br_issue),
+    advisory: link(br_issue),
+    path: filepath(br_issue),
+    message: message(br_issue),
+    where: where(br_issue)
+  })
 
 let into_issues = (brakeman_json) =>
   brakeman_json.warnings
     .map((warning) => vile_issue(warning, brakeman_type.WARNING))
-  .concat(
-    brakeman_json.errors
-    .map((error) => vile_issue(error, brakeman_type.ERROR))
-  )
-
-let append_ok_issues = (all_files, issues) =>
-  _.reject(all_files, (f) =>
-    _.any(issues, (issue) => issue.file == f.file)
-  ).concat(issues)
+    .concat(brakeman_json.errors
+      .map((error) => vile_issue(error, brakeman_type.ERROR)))
 
 // TODO: support other options like --skip-files
 let punish = (plugin_config) =>
-  vile.promise_each(
-    process.cwd(),
-    allowed(_.get(plugin_config, "ignore", [])),
-    (filepath) => vile.issue(vile.OK, filepath),
-    { read_data: false }
-  )
-  .then((all_files) =>
-    brakeman(_.get(plugin_config, "config"))
-      .then(into_issues)
-      .then(_.partial(append_ok_issues, all_files))
-  )
+  brakeman(_.get(plugin_config, "config"))
+    .then(into_issues)
 
 module.exports = {
   punish: punish

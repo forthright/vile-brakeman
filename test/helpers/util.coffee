@@ -1,80 +1,48 @@
 Promise = require "bluebird"
 
-all_files = [
-  {
-    file: "app/models/some_other_model.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
-  }
-  {
-    file: "app/models/a_model.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
-  }
-  {
-    file: "config/routes.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
-  }
-  {
-    file: "app/controllers/some_controller.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
-  }
-]
-
 issues = [
   {
-    file: "app/models/some_other_model.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
+    path: "app/models/a_model.rb",
+    title: "Mass Assignment",
+    message: "Potentially dangerous attribute available for " +
+         "mass assignment (Confidence: Weak)",
+    type: "security"
+    signature: "brakeman::xyz"
+    advisory: "http://brakemanscanner.org/docs/warning_types/mass_assignment/",
+    where: {}
   }
   {
-    file: "app/controllers/some_controller.rb",
-    msg: "",
-    type: "ok",
-    data: {},
-    where: { end: {}, start: {} }
+    path: "app/views/issues/index.html.slim"
+    title: "Dynamic Render Path",
+    message: "Render path contains parameter value" +
+             " (Confidence: Weak)",
+    signature: "brakeman::9aab84544cdb8287a2af08623f0a9fc" +
+                "fabc904b816c1c633ef797d1be0ee9994",
+    type: "security",
+    advisory: "http://brakemanscanner.org/docs/warning_types/" +
+              "dynamic_render_path/"
+    where: { start: { line: 21 } }
   }
   {
-    file: "app/models/a_model.rb",
-    msg: "Potentially dangerous attribute available for " +
-         "mass assignment (Mass Assignment) (Confidence: Weak)",
-    type: "warn"
-    data: {},
-    where: {
-      end: { }
-      start: { }
-    }
+    path: "config/routes.rb",
+    title: "Default Routes",
+    message: "All public methods in controllers are available " +
+         "as actions in routes.rb (Confidence: High)",
+    type: "security",
+    signature: "brakeman::abcd",
+    advisory: "http://brakemanscanner.org/docs/warning_types/default_routes/",
+    where: { start: { line: 34 } }
   }
   {
-    file: "config/routes.rb",
-    msg: "All public methods in controllers are available " +
-         "as actions in routes.rb (Default Routes) (Confidence: High)",
-    type: "warn",
-    data: {},
-    where: {
-      end: { }
-      start: { line: 34 }
-    }
-  }
-  {
-    file: "",
-    msg: "(app/controllers/some_controller.rb:7 " +
-         ":: parse error on value \"-\" (tOP_ASGN))",
+    path: "",
+    title: "Error",
+    advisory: undefined,
+    message: "app/controllers/some_controller.rb:7 " +
+         ":: parse error on value \"-\" (tOP_ASGN)",
     type: "error",
-    data: {},
-    where: { end: {}, start: {} }
+    signature: "brakeman::app/controllers/some_controller.rb:7 " +
+             ":: parse error on value \"-\" (tOP_ASGN)",
+    where: {}
   }
 ]
 
@@ -84,33 +52,60 @@ brakeman_json =
       {
         warning_type: "Mass Assignment"
         warning_code: 60
-        fingerprint: "..."
+        fingerprint: "xyz"
         message: "Potentially dangerous attribute available for mass assignment"
         file: "app/models/a_model.rb"
-        line: null
+        line: undefined
         link: "http://brakemanscanner.org/docs/warning_types/mass_assignment/"
         code: ":some_attr"
-        render_path: null
+        render_path: undefined
         location: {
           type: "model"
           model: "AModel"
         }
-        user_input: null
+        user_input: undefined
+        confidence: "Weak"
+      }
+      {
+        warning_type: "Dynamic Render Path"
+        warning_code: 15
+        fingerprint: "9aab84544cdb8287a2af08623f0a" +
+                      "9fcfabc904b816c1c633ef797d1be0ee9994"
+        message: "Render path contains parameter value"
+        file: "app/views/issues/index.html.slim"
+        line: 21
+        link: "http://brakemanscanner.org/docs/warning_types" +
+              "/dynamic_render_path/"
+        code: ".."
+        render_path: [
+          {
+            type: "controller",
+            class: "IssuesController",
+            method: "index",
+            line: 20,
+            file: "app/controllers/issues_controller.rb"
+          }
+        ]
+        location: {
+          type: "template",
+          template: "issues/index"
+        }
+        user_input: "params[:page]"
         confidence: "Weak"
       }
       {
         warning_type: "Default Routes"
         warning_code: 11
-        fingerprint: ".."
+        fingerprint: "abcd"
         message: "All public methods in controllers are " +
                  "available as actions in routes.rb"
         file: "config/routes.rb"
         line: 34
         link: "http://brakemanscanner.org/docs/warning_types/default_routes/"
-        code: null
-        render_path: null
-        location: null
-        user_input: null
+        code: undefined
+        render_path: undefined
+        location: undefined
+        user_input: undefined
         confidence: "High"
       }
     ]
@@ -137,13 +132,9 @@ brakeman_json =
   }
 
 setup = (vile) ->
-  vile.promise_each.returns new Promise (resolve) ->
-    resolve all_files
-
   vile.spawn.returns new Promise (resolve) ->
     resolve JSON.stringify brakeman_json
 
 module.exports =
   issues: issues
-  all_files: all_files
   setup: setup
