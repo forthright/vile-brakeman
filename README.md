@@ -1,4 +1,4 @@
-# vile-brakeman
+# vile-brakeman [![Circle CI](https://circleci.com/gh/brentlintner/vile-brakeman.svg?style=svg&circle-token=5680dde9902c1f68684173ee1e9ead2fd4b43df2)](https://circleci.com/gh/brentlintner/vile-brakeman)
 
 A [vile](http://vile.io) plugin for [brakeman](http://github.com/presidentbeef/brakeman).
 
