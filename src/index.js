@@ -52,15 +52,18 @@ let title = (br_issue, type) =>
   type == brakeman_type.ERROR ?
     "Error" : br_issue.warning_type
 
+// TODO: cleanly merge security object if type is that
 let vile_issue = (br_issue, type) =>
   vile.issue({
     type: context(type),
     title: title(br_issue, type),
     signature: signature(br_issue),
-    advisory: link(br_issue),
     path: filepath(br_issue),
     message: message(br_issue),
-    where: where(br_issue)
+    where: where(br_issue),
+    security: {
+      advisory: link(br_issue)
+    }
   })
 
 let into_issues = (brakeman_json) =>

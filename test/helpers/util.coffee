@@ -8,7 +8,9 @@ issues = [
          "mass assignment (Confidence: Weak)",
     type: "security"
     signature: "brakeman::xyz"
-    advisory: "http://brakemanscanner.org/docs/warning_types/mass_assignment/",
+    security: {
+      advisory: "http://brakemanscanner.org/docs/warning_types/mass_assignment/"
+    }
     where: {}
   }
   {
@@ -19,8 +21,10 @@ issues = [
     signature: "brakeman::9aab84544cdb8287a2af08623f0a9fc" +
                 "fabc904b816c1c633ef797d1be0ee9994",
     type: "security",
-    advisory: "http://brakemanscanner.org/docs/warning_types/" +
-              "dynamic_render_path/"
+    security: {
+      advisory: "http://brakemanscanner.org/docs/warning_types/" +
+                "dynamic_render_path/"
+    },
     where: { start: { line: 21 } }
   }
   {
@@ -30,16 +34,18 @@ issues = [
          "as actions in routes.rb (Confidence: High)",
     type: "security",
     signature: "brakeman::abcd",
-    advisory: "http://brakemanscanner.org/docs/warning_types/default_routes/",
+    security: {
+      advisory: "http://brakemanscanner.org/docs/warning_types/default_routes/"
+    }
     where: { start: { line: 34 } }
   }
   {
     path: "",
     title: "Error",
-    advisory: undefined,
     message: "app/controllers/some_controller.rb:7 " +
          ":: parse error on value \"-\" (tOP_ASGN)",
     type: "error",
+    security: { advisory: undefined }
     signature: "brakeman::app/controllers/some_controller.rb:7 " +
              ":: parse error on value \"-\" (tOP_ASGN)",
     where: {}
