@@ -1,5 +1,5 @@
 let _ = require("lodash")
-let vile = require("@brentlintner/vile")
+let vile = require("@forthright/vile")
 
 const brakeman_cli = "brakeman"
 const brakeman_base_options = ["-q", "--format", "json", "."]
