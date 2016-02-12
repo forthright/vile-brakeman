@@ -1,20 +1,4 @@
 vile:
-  plugins: [
-      "nsp",
-      "ncu",
-      "depcheck",
-      "license",
-      "coffeelint",
-      "jshint",
-      "eslint",
-      "newline",
-      "readme",
-      "semver",
-      "comment",
-      "length",
-      "whitespace"
-    ]
-
   ignore: [
       "node_modules",
       ".test",
