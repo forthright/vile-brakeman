@@ -15,6 +15,7 @@ vile:
       ".jshintrc",
       ".jshintignore",
       ".gitignore",
+      ".git",
       ".npmrc",
       "README.md",
       "vendor",
