@@ -1,6 +1,6 @@
 # vile-brakeman [![Circle CI](https://circleci.com/gh/brentlintner/vile-brakeman.svg?style=svg&circle-token=5680dde9902c1f68684173ee1e9ead2fd4b43df2)](https://circleci.com/gh/brentlintner/vile-brakeman)
 
-[![score-badge](http://vile.io/brentlintner/vile-brakeman/badges/score?token=_RTzjhVJf4M2y1JNxgu-)](http://vile.io/brentlintner/vile-brakeman) [![security-badge](http://vile.io/brentlintner/vile-brakeman/badges/security?token=_RTzjhVJf4M2y1JNxgu-)](http://vile.io/brentlintner/vile-brakeman) [![coverage-badge](http://vile.io/brentlintner/vile-brakeman/badges/coverage?token=_RTzjhVJf4M2y1JNxgu-)](http://vile.io/brentlintner/vile-brakeman) [![dependency-badge](http://vile.io/brentlintner/vile-brakeman/badges/dependency?token=_RTzjhVJf4M2y1JNxgu-)](http://vile.io/brentlintner/vile-brakeman)
+[![score-badge](https://vile.io/brentlintner/vile-brakeman/badges/score?token=_RTzjhVJf4M2y1JNxgu-)](https://vile.io/brentlintner/vile-brakeman) [![security-badge](https://vile.io/brentlintner/vile-brakeman/badges/security?token=_RTzjhVJf4M2y1JNxgu-)](https://vile.io/brentlintner/vile-brakeman) [![coverage-badge](https://vile.io/brentlintner/vile-brakeman/badges/coverage?token=_RTzjhVJf4M2y1JNxgu-)](https://vile.io/brentlintner/vile-brakeman) [![dependency-badge](https://vile.io/brentlintner/vile-brakeman/badges/dependency?token=_RTzjhVJf4M2y1JNxgu-)](https://vile.io/brentlintner/vile-brakeman)
 
 A [vile](http://vile.io) plugin for [brakeman](http://github.com/presidentbeef/brakeman).
 
