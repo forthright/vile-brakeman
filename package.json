@@ -1,6 +1,6 @@
 {
   "name": "@forthright/vile-brakeman",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "A vile plugin for brakeman.",
   "main": "lib/index.js",
   "files": [
