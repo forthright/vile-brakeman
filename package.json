@@ -9,11 +9,16 @@
     "src"
   ],
   "scripts": {
-    "compile": "bin/compile",
-    "compile-dev": "bin/compile-dev",
-    "dev": "bin/dev",
-    "test": "bin/test",
-    "test-cov": "bin/test-cov",
+    "babel": "babel",
+    "coffee": "coffee",
+    "compile": "node bin/compile",
+    "compile-dev": "node bin/compile-dev",
+    "dev": "sh bin/dev",
+    "istanbul": "istanbul",
+    "ncu": "ncu -a",
+    "lint-cov": "node bin/lint-cov",
+    "test": "node bin/test",
+    "test-cov": "node bin/test-cov",
     "vile": "vile -csipd --nodecorations"
   },
   "keywords": [
