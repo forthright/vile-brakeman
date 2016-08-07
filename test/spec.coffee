@@ -30,6 +30,7 @@ describe "running brakeman", ->
                             "."
                           ]
           done()
+    return
 
   it "converts brakeman json to issues", ->
     brakeman
@@ -62,3 +63,4 @@ describe "running brakeman", ->
                             "."
                           ]
             done()
+      return
