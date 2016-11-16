@@ -22,7 +22,10 @@ let brakeman = (custom_config_path) =>
     .spawn(brakeman_cli, {
       args: brakeman_cli_args(custom_config_path)
     })
-    .then((stdout) => stdout ? JSON.parse(stdout) : no_br_issues)
+    .then((data) => {
+      let stdout = _.get(data, "stdout")
+      return stdout ? JSON.parse(stdout) : no_br_issues
+    })
 
 let where = (br_issue) =>
   br_issue.line ?

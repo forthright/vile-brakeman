@@ -139,7 +139,11 @@ brakeman_json =
 
 setup = (vile) ->
   vile.spawn.returns new Promise (resolve) ->
-    resolve JSON.stringify brakeman_json
+    resolve {
+      code: 0
+      stdout: JSON.stringify brakeman_json
+      stderr: ""
+    }
 
 module.exports =
   issues: issues
