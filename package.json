@@ -32,10 +32,10 @@
     "lodash": "^4.17.4"
   },
   "peerDependencies": {
-    "@forthright/vile": ">=0.11.5"
+    "@forthright/vile": ">=0.11.6"
   },
   "devDependencies": {
-    "@forthright/vile": ">=0.11.5",
+    "@forthright/vile": ">=0.11.6",
     "@forthright/vile-coffeelint": ">=0.1.14",
     "@forthright/vile-comment": ">=0.1.17",
     "@forthright/vile-coverage": ">=0.2.14",
