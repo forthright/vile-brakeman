@@ -43,7 +43,7 @@ Any contributions made to this project are made under the current license.
 
 ## Contributions
 
-Current list of [Contributors](https://github.com/brentlintner/vile-brakeman/graphs/contributors).
+Current list of [Contributors](https://github.com/forthright/vile-brakeman/graphs/contributors).
 
 Any contributions are welcome and appreciated!
 
