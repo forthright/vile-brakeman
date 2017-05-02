@@ -1,6 +1,6 @@
 {
   "name": "vile-brakeman",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A vile plugin for brakeman.",
   "main": "lib/index.js",
   "files": [
