@@ -1,7 +1,7 @@
 {
   "name": "vile-brakeman",
   "version": "0.3.2",
-  "description": "A vile plugin for brakeman.",
+  "description": "Find security vulnerabilities in your Rails code.",
   "main": "lib/index.js",
   "files": [
     "lib",
