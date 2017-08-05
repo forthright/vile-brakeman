@@ -52,7 +52,7 @@
     "vile-eclint": "^0.1.14",
     "vile-eslint": "^0.1.14",
     "vile-git": "^0.5.3",
-    "vile-ncu": "^0.2.4",
+    "vile-ncu": "^0.3.0",
     "vile-nsp": "^0.2.14",
     "vile-stat": "^0.1.0"
   },
