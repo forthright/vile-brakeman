@@ -2,7 +2,14 @@ let _ = require("lodash")
 let vile = require("vile")
 
 const brakeman_cli = "brakeman"
-const brakeman_base_options = ["-q", "--format", "json", "."]
+const brakeman_base_options = [
+  "-q",
+  "--format",
+  "json",
+  "--no-exit-on-warn",
+  "--no-exit-on-error",
+  "."
+]
 const brakeman_type = {
   WARNING: 1,
   ERROR: 2

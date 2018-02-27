@@ -27,6 +27,8 @@ describe "running brakeman", ->
                             "-q"
                             "--format"
                             "json",
+                            "--no-exit-on-warn"
+                            "--no-exit-on-error"
                             "."
                           ]
           done()
@@ -60,6 +62,8 @@ describe "running brakeman", ->
                             "-q"
                             "--format"
                             "json"
+                            "--no-exit-on-warn"
+                            "--no-exit-on-error"
                             "."
                           ]
             done()
