@@ -1,6 +1,6 @@
 {
   "name": "vile-brakeman",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Find security vulnerabilities in your Rails code.",
   "main": "lib/index.js",
   "files": [
